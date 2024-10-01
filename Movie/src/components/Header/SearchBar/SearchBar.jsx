@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { fetchMultiSearch } from "../../../services/getSearch";
 import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
