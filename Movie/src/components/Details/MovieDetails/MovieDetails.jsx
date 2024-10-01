@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchMoviesDetails } from "../../../services/GetMovies";
+import { fetchMoviesDetails } from "../../../services/getMovies";
 import { Helmet } from "react-helmet-async";
 import { HelmetProvider } from "react-helmet-async";
 import { MovieCasts } from "../../Casts/MovieCasts";

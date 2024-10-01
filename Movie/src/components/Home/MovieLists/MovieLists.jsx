@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { fetchMoviesList } from "../../../services/GetMovies";
+import { fetchMoviesList } from "../../../services/getMovies";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ArrowSwiper from "../ArrowSwiper/ArrowSwiper";
