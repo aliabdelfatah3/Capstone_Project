@@ -7,7 +7,7 @@ import TVShows from "./components/TV/TVShows";
 import { MovieDetails } from "./components/Details/MovieDetails/MovieDetails";
 import { TVShowDetails } from "./components/Details/TVShowDetails/TVShowDetails";
 import { SearchResults } from "./components/SearchResults/SearchResults";
-import { Layout } from "./components/Layout/layout";
+import { Layout } from "./components/Layout/Layout";
 function App() {
   return (
     <div>
