@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "../Home/Card/MovieCard";
-import { fetchMoviesList } from "../../services/GetMovies";
+import { fetchMoviesList } from "../../services/getMovies";
 import { Helmet } from "react-helmet-async";
 import { HelmetProvider } from "react-helmet-async";
 
