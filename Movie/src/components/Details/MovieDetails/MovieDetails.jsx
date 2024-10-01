@@ -46,11 +46,11 @@ export const MovieDetails = () => {
           {movieDetails.original_title}
         </h2>
 
-        <p className="w-full max-w-3xl text-center text-gray-700 leading-relaxed">
+        <h1 className="w-full max-w-3xl text-center text-gray-700 leading-relaxed">
           <span className="font-semibold">Plot Summary : </span>
 
           <p> {movieDetails.overview}</p>
-        </p>
+        </h1>
         <div className="items-start">
           <h3 className="text-lg text-gray-600 mt-2">
             <span className="font-semibold">Runtime: </span>
