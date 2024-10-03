@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
   const [query, setQuery] = useState("");
-  // const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -28,19 +27,18 @@ function SearchBar() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="relative pl-6 pr-6 py-1 rounded-full text-black placeholder:text-black bg-search"
+          className="relative w-40 md:w-56 pl-6 pr-6 py-1 rounded-full text-black placeholder:text-black bg-search"
           placeholder="Search"
         />
-        <div className="absolute inset-y-1 left-48 flex items-center pl-3 pointer-events-none">
-          <i className="fas fa-search text-white"></i>
+        <div className="absolute inset-y-1 md:left-48 left-32 flex items-center  ">
+          <button
+            className=" rounded-full"
+            type="submit"
+            onClick={handleRefresh}
+          >
+            <i className="fas fa-search text-white"></i>
+          </button>
         </div>
-        <button
-          className="ml-4 bg-btn py-1 px-3 rounded-full"
-          type="submit"
-          onClick={handleRefresh}
-        >
-          Search
-        </button>
       </form>
     </div>
   );

@@ -7,8 +7,8 @@ function Header() {
   return (
     <div className="flex justify-evenly items-center pt-3 pb-5 bg-homebg text-white">
       <Logo />
-      <Navbar />
       <SearchBar />
+      <Navbar />
     </div>
   );
 }

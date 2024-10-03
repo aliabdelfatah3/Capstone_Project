@@ -38,7 +38,7 @@ export const TVShowDetails = () => {
         key={tvDetails.id}
       >
         <img
-          className="w-full h-80 object-fill md:h-96 lg:h-2/3 rounded-lg shadow-lg"
+          className="w-full h-80 object-fill sm:h-96 lg:h-2/3 rounded-lg shadow-lg"
           src={`https://image.tmdb.org/t/p/original/${tvDetails.backdrop_path}`}
           alt={tvDetails.original_name}
         />
@@ -47,10 +47,10 @@ export const TVShowDetails = () => {
           {tvDetails.original_name}
         </h2>
 
-        <p className=" w-full max-w-3xl text-center text-gray-700 leading-relaxed">
+        <h3 className=" w-full max-w-3xl text-center text-gray-700 leading-relaxed">
           <span className="font-semibold">Plot Summary: </span>
           <p>{tvDetails.overview}</p>
-        </p>
+        </h3>
 
         <div className="items-start">
           <h3 className="text-lg text-gray-600 mt-2">
@@ -60,8 +60,10 @@ export const TVShowDetails = () => {
 
           <h3 className="flex gap-2 text-lg text-gray-600 mt-2">
             <span className="font-semibold">Genres: </span>
-            {tvDetails.genres.map(({ name }) => (
-              <p key={name.id}>{name}</p>
+            {tvDetails.genres.map(({ name, index }) => (
+              <div key={id || index}>
+                <p>{name}</p>
+              </div>
             ))}
           </h3>
           <h3 className="text-lg text-gray-600 mt-2">

@@ -23,8 +23,8 @@ export default function Movies() {
       </HelmetProvider>
       <div className="flex justify-center  flex-wrap gap-4">
         {movies.map((movie) => (
-          <div className="hover:scale-105">
-            <MovieCard key={movie.id} to={`${movie.id}`} movie={movie} />
+          <div key={movie.id} className="hover:scale-105">
+            <MovieCard to={`${movie.id}`} movie={movie} />
           </div>
         ))}
       </div>

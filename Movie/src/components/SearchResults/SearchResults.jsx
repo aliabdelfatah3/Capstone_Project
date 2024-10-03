@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchMultiSearch } from "../../services/getSearch";
+import { HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 
-export const SearchResults = (to) => {
+export const SearchResults = () => {
   const { searchquery } = useParams();
   const [results, setResults] = useState([]);
 
@@ -10,7 +12,6 @@ export const SearchResults = (to) => {
     const multySearch = async () => {
       const searchResults = await fetchMultiSearch(searchquery);
       setResults(searchResults);
-      console.log(searchResults);
     };
     multySearch();
   }, []);
@@ -23,12 +24,14 @@ export const SearchResults = (to) => {
   };
   return (
     <div className="flex flex-wrap gap-4 justify-center">
+      <HelmetProvider>
+        <Helmet>
+          <title>Search Reslts</title>
+        </Helmet>
+      </HelmetProvider>
       {results.map((result) => (
-        <div className="pt-10 hover:scale-105">
-          <Link
-            key={result.id}
-            to={movieDetailsPath(result.media_type, result.id)}
-          >
+        <div key={result.id} className="pt-10 hover:scale-105">
+          <Link to={movieDetailsPath(result.media_type, result.id)}>
             <div className="flex flex-col w-56 border shadow-2xl rounded-lg justify-center items-center gap-2">
               <p className="">Release Date: {result.release_date}</p>
               <img

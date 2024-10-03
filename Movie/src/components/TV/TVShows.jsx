@@ -23,8 +23,8 @@ export default function TVShows() {
       </HelmetProvider>
       <div className="flex justify-center flex-wrap gap-4">
         {series.map((tv) => (
-          <div className="hover:scale-105 ">
-            <TVShowsCard key={tv.id} to={`${tv.id}`} tv={tv} />
+          <div key={tv.id} className="hover:scale-105 ">
+            <TVShowsCard to={`${tv.id}`} tv={tv} />
           </div>
         ))}
       </div>

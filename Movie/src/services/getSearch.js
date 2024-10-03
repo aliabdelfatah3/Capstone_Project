@@ -1,10 +1,5 @@
 import axios from "axios";
-import {
-  API_KEY,
-  APIKEY,
-  BASE_OMDB_URL,
-  BASE_URL,
-} from "../constants/enviromentVariables";
+import { API_KEY, BASE_URL } from "../constants/enviromentVariables";
 
 export const fetchMultiSearch = async (query) => {
   try {

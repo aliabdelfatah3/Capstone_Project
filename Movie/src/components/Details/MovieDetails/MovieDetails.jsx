@@ -34,11 +34,11 @@ export const MovieDetails = () => {
         </Helmet>
       </HelmetProvider>
       <div
-        className="flex flex-col justify-center items-center  m-10 p-10 gap-2 h-screen"
+        className="flex flex-col justify-center items-center  gap-2 "
         key={movieDetails.id}
       >
         <img
-          className="w-full h-80 object-fill md:h-96 lg:h-2/3 rounded-lg shadow-lg"
+          className="w-full h-80 object-fill mx-5 my-5 sm:mx-0 sm:my-0 sm:h-96 lg:h-2/3 rounded-lg shadow-lg"
           src={`https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path}`}
           alt={movieDetails.original_title}
         />
@@ -57,7 +57,7 @@ export const MovieDetails = () => {
             {movieDetails.runtime} minutes
           </h3>
 
-          <h3 className="flex gap-2 text-lg text-gray-600 mt-2">
+          <h3 className="flex flex-col sm:flex-row gap-2 text-lg text-gray-600 mt-2">
             <span className="font-semibold">Genres: </span>
             {movieDetails.genres.map((genres) => (
               <p key={genres.id}>{genres.name}</p>
