@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
+/**
+ * Navbar component that provides navigation links for the application.
+ * It supports both mobile and desktop layouts, with a toggleable mobile menu.
+ */
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false); // State to manage mobile menu visibility
+  // State to manage the visibility of the mobile menu
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="relative">
@@ -10,7 +15,7 @@ function Navbar() {
         {/* Mobile Menu Button */}
         <div className="sm:hidden">
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setIsOpen(!isOpen)} // Toggles mobile menu visibility
             className="text-white focus:outline-none"
           >
             <svg
@@ -24,7 +29,7 @@ function Navbar() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
+                d="M4 6h16M4 12h16M4 18h16" // Hamburger icon
               />
             </svg>
           </button>
@@ -32,12 +37,13 @@ function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="sm:hidden  mt-2">
+      {isOpen && ( // Renders the mobile menu if isOpen is true
+        <div className="sm:hidden mt-2">
           <ul className="space-y-4 font-semibold font-Inter">
+            {/* Navigation Links */}
             <li>
               <NavLink
-                to={"/"}
+                to={"/"} // Home link
                 className={({ isActive }) =>
                   `${
                     isActive
@@ -51,7 +57,7 @@ function Navbar() {
             </li>
             <li>
               <NavLink
-                to={"movies"}
+                to={"movies"} // Movies link
                 className={({ isActive }) =>
                   `${
                     isActive
@@ -65,7 +71,7 @@ function Navbar() {
             </li>
             <li>
               <NavLink
-                to={"tvshows"}
+                to={"tvshows"} // TV Shows link
                 className={({ isActive }) =>
                   `${
                     isActive
@@ -82,7 +88,8 @@ function Navbar() {
       )}
 
       {/* Desktop Menu */}
-      <ul className="hidden sm:flex font-semibold font-Inter flex-row gap-12 ">
+      <ul className="hidden sm:flex font-semibold font-Inter flex-row gap-12">
+        {/* Navigation Links for Desktop */}
         <li>
           <NavLink
             className={({ isActive }) =>
@@ -92,7 +99,7 @@ function Navbar() {
                   : "text-sky-500 hover:text-sky-600"
               }`
             }
-            to={"/"}
+            to={"/"} // Home link
           >
             Home
           </NavLink>
@@ -106,7 +113,7 @@ function Navbar() {
                   : "text-sky-500 hover:text-sky-600"
               }`
             }
-            to={"movies"}
+            to={"movies"} // Movies link
           >
             Movies
           </NavLink>
@@ -120,7 +127,7 @@ function Navbar() {
                   : "text-sky-500 hover:text-sky-600"
               }`
             }
-            to={"tvshows"}
+            to={"tvshows"} // TV Shows link
           >
             TV Shows
           </NavLink>
