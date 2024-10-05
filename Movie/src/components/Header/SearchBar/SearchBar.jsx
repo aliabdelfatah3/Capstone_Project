@@ -27,7 +27,7 @@ function SearchBar() {
           type="text"
           value={query} // Controlled input value.
           onChange={(e) => setQuery(e.target.value)} // Updating state on input change.
-          className="relative w-40 md:w-56 pl-6 pr-6 py-1 rounded-full text-black placeholder:text-black bg-search"
+          className="relative w-40 md:w-56 pl-6 pr-6 py-1 rounded-full text-black placeholder:text-black bg-blue-300"
           placeholder="Search"
         />
         <div className="absolute inset-y-1 md:left-48 left-32 flex items-center">
