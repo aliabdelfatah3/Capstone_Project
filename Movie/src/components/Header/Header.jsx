@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "./Navbar/Navbar";
 import SearchBar from "./SearchBar/SearchBar";
 import Logo from "./Logo/Logo";
@@ -10,7 +9,7 @@ import Logo from "./Logo/Logo";
 
 function Header() {
   return (
-    <div className="flex justify-evenly items-center pt-3 pb-5 bg-homebg text-white">
+    <div className="flex sticky z-50 top-0 justify-evenly items-center pt-3 pb-5 bg-homebg text-white">
       <Logo />
       <SearchBar />
       <Navbar />
