@@ -1,10 +1,10 @@
 import axios from "axios";
-import { BASE_OMDB_URL } from "../constants/enviromentVariables";
+import { BASE_OMDB_URL, OMDB_API_KEY } from "../constants/enviromentVariables";
 
 export const fetchRatings = async (query) => {
   // Declaring an asynchronous function `fetchRatings` that takes a `query` parameter.
   try {
-    const reqBody = { params: { api_key: API_KEY } };
+    const reqBody = { params: { apikey: OMDB_API_KEY } };
     // Defining the request body. Here, we’re adding the `api_key` as a parameter to the request.
 
     const response = await axios.get(`${BASE_OMDB_URL}?t${query}`, reqBody);

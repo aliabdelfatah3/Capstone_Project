@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 /**
  * Layout component that serves as the primary structure for the application.
@@ -13,9 +13,11 @@ import Footer from "../Footer/Footer";
 
 export const Layout = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <Outlet />
+      <main className="w-full pb-10 flex-grow">
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

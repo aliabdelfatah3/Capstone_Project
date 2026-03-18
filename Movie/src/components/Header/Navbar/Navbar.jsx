@@ -6,133 +6,98 @@ import { NavLink } from "react-router-dom";
  * It supports both mobile and desktop layouts, with a toggleable mobile menu.
  */
 function Navbar() {
-  // State to manage the visibility of the mobile menu
   const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
+
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "Movies", path: "/movies" },
+    { name: "TV Shows", path: "/tvshows" },
+  ];
 
   return (
     <nav className="relative">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Mobile Menu Button */}
-        <div className="sm:hidden">
-          <button
-            onClick={() => setIsOpen(!isOpen)} // Toggles mobile menu visibility
-            className="text-white focus:outline-none"
+      <div className="flex items-center">
+        {/* Mobile Menu Toggle Button */}
+        <button
+          onClick={toggleMenu}
+          className="sm:hidden relative z-[60] w-10 h-10 flex flex-col justify-center items-center gap-1.5 focus:outline-none bg-white/5 hover:bg-white/10 rounded-lg transition-colors border border-white/10"
+          aria-label="Toggle Menu"
+        >
+          <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+          <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+          <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+        </button>
+
+        {/* Desktop Menu */}
+        <ul className="hidden sm:flex items-center gap-8 md:gap-12 font-Inter tracking-wide">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <NavLink
+                to={link.path}
+                className={({ isActive }) =>
+                  `text-sm md:text-base font-semibold transition-all duration-300 relative py-1 hover:text-primary ${
+                    isActive ? "text-primary border-b-2 border-primary" : "text-gray-300"
+                  }`
+                }
+              >
+                {link.name}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+
+        {/* Mobile Menu Overlay */}
+        <div 
+          className={`fixed inset-0 z-50 sm:hidden transition-all duration-500 ease-in-out ${
+            isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
+        >
+          {/* Backdrop Blur */}
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" onClick={closeMenu}></div>
+          
+          {/* Menu Content */}
+          <div 
+            className={`absolute inset-y-0 right-0 w-[70%] bg-gradient-to-br from-homebg/95 to-black/95 shadow-2xl border-l border-white/5 flex flex-col pt-24 px-8 transition-transform duration-500 ease-out ${
+              isOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16" // Hamburger icon
-              />
-            </svg>
-          </button>
+            <ul className="flex flex-col gap-8">
+              {navLinks.map((link, index) => (
+                <li 
+                  key={link.name}
+                  style={{ transitionDelay: `${index * 50}ms` }}
+                  className={`transition-all duration-500 ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'}`}
+                >
+                  <NavLink
+                    to={link.path}
+                    onClick={closeMenu}
+                    className={({ isActive }) =>
+                      `text-2xl font-bold font-Inter transition-colors flex items-center gap-3 ${
+                        isActive ? "text-primary" : "text-gray-300"
+                      }`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        {isActive && <div className="w-1.5 h-8 bg-primary rounded-full animate-pulse-slow"></div>}
+                        {link.name}
+                      </>
+                    )}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-auto mb-10 text-gray-500 text-sm">
+              <p>© 2026 Movie Database</p>
+              <p className="mt-1">Experience Excellence.</p>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {isOpen && ( // Renders the mobile menu if isOpen is true
-        <div className="sm:hidden mt-2">
-          <ul className="space-y-4 font-semibold font-Inter">
-            {/* Navigation Links */}
-            <li>
-              <NavLink
-                to={"/"} // Home link
-                className={({ isActive }) =>
-                  `${
-                    isActive
-                      ? "text-white py-1 border-b-2 border-white"
-                      : "text-sky-500 hover:text-sky-600"
-                  }`
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to={"movies"} // Movies link
-                className={({ isActive }) =>
-                  `${
-                    isActive
-                      ? "text-white py-1 border-b-2 border-white"
-                      : "text-sky-500 hover:text-sky-600"
-                  }`
-                }
-              >
-                Movies
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to={"tvshows"} // TV Shows link
-                className={({ isActive }) =>
-                  `${
-                    isActive
-                      ? "text-white py-1 border-b-2 border-white"
-                      : "text-sky-500 hover:text-sky-600"
-                  }`
-                }
-              >
-                TV Shows
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-      )}
-
-      {/* Desktop Menu */}
-      <ul className="hidden sm:flex font-semibold font-Inter flex-row gap-12">
-        {/* Navigation Links for Desktop */}
-        <li>
-          <NavLink
-            className={({ isActive }) =>
-              `${
-                isActive
-                  ? "text-white py-1 border-b-2 border-white"
-                  : "text-sky-500 hover:text-sky-600"
-              }`
-            }
-            to={"/"} // Home link
-          >
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            className={({ isActive }) =>
-              `${
-                isActive
-                  ? "text-white py-1 border-b-2 border-white"
-                  : "text-sky-500 hover:text-sky-600"
-              }`
-            }
-            to={"movies"} // Movies link
-          >
-            Movies
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            className={({ isActive }) =>
-              `${
-                isActive
-                  ? "text-white py-1 border-b-2 border-white"
-                  : "text-sky-500 hover:text-sky-600"
-              }`
-            }
-            to={"tvshows"} // TV Shows link
-          >
-            TV Shows
-          </NavLink>
-        </li>
-      </ul>
     </nav>
   );
 }

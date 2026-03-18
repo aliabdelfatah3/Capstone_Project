@@ -12,16 +12,46 @@ const reqBody = { params: { api_key: API_KEY } };
  * @returns {Promise<Array>} A promise that resolves to an array of TV show objects.
  * @throws {Error} Throws an error if the API request fails.
  */
-export const fetchTvList = async () => {
+export const fetchTvList = async (page = 1) => {
   try {
+    // Add page to parameters
+    const params = { api_key: API_KEY, page };
     // Make a GET request to the /discover/tv endpoint to fetch a list of TV shows.
-    const response = await axios.get(`${BASE_URL}/discover/tv`, reqBody);
+    const response = await axios.get(`${BASE_URL}/discover/tv`, { params });
 
-    // Return the 'results' array from the response data.
-    return response.data.results;
+    // Return the full object data (includes results and total_pages)
+    return response.data;
   } catch (error) {
     // Log the error and throw it so it can be handled by the caller.
     console.error("Error Fetching TV List", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches top rated TV shows from the API's "tv/top_rated" endpoint.
+ */
+export const fetchTopRatedTvShows = async () => {
+  try {
+    const params = { api_key: API_KEY };
+    const response = await axios.get(`${BASE_URL}/tv/top_rated`, { params });
+    return response.data;
+  } catch (error) {
+    console.error("Error Fetching Top Rated TV Shows", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches TV shows airing today from the API's "tv/airing_today" endpoint.
+ */
+export const fetchAiringTodayTvShows = async () => {
+  try {
+    const params = { api_key: API_KEY };
+    const response = await axios.get(`${BASE_URL}/tv/airing_today`, { params });
+    return response.data;
+  } catch (error) {
+    console.error("Error Fetching Airing Today TV Shows", error);
     throw error;
   }
 };

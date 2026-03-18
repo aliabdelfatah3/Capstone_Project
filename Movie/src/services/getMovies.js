@@ -12,16 +12,58 @@ const reqBody = { params: { api_key: API_KEY } };
  * @returns {Promise<Array>} A promise that resolves to an array of movie objects.
  * @throws {Error} Throws an error if the API request fails.
  */
-export const fetchMoviesList = async () => {
+export const fetchMoviesList = async (page = 1) => {
   try {
-    // Make a GET request to the /discover/movie endpoint with the API key.
-    const response = await axios.get(`${BASE_URL}/discover/movie`, reqBody);
-
-    // Return the list of movies (results array) from the response data.
-    return response.data.results;
+    const params = { api_key: API_KEY, page };
+    const response = await axios.get(`${BASE_URL}/discover/movie`, { params });
+    return response.data;
   } catch (error) {
-    // Log and throw an error if the request fails.
     console.error("Error Fetching Movies List", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches the daily trending movies from the API's "trending/movie/day" endpoint.
+ * @returns {Promise<Array>} A promise that resolves to an array of trending movie objects.
+ * @throws {Error} Throws an error if the API request fails.
+ */
+export const fetchTrendingMovies = async () => {
+  try {
+    const params = { api_key: API_KEY };
+    const response = await axios.get(`${BASE_URL}/trending/movie/day`, { params });
+    // Return only the first 5 trending movies for the hero slider
+    return response.data;
+  } catch (error) {
+    console.error("Error Fetching Trending Movies", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches the top rated movies from the API's "movie/top_rated" endpoint.
+ */
+export const fetchTopRatedMovies = async () => {
+  try {
+    const params = { api_key: API_KEY };
+    const response = await axios.get(`${BASE_URL}/movie/top_rated`, { params });
+    return response.data;
+  } catch (error) {
+    console.error("Error Fetching Top Rated Movies", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches the upcoming movies from the API's "movie/upcoming" endpoint.
+ */
+export const fetchUpcomingMovies = async () => {
+  try {
+    const params = { api_key: API_KEY };
+    const response = await axios.get(`${BASE_URL}/movie/upcoming`, { params });
+    return response.data;
+  } catch (error) {
+    console.error("Error Fetching Upcoming Movies", error);
     throw error;
   }
 };

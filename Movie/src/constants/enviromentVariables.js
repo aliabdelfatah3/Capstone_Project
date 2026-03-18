@@ -7,3 +7,6 @@ export const API_KEY = import.meta.env.VITE_API_KEY;
 // 'import.meta.env.VITE_BASE_URL' is used to get the base URL, ensuring it can be
 // changed for different environments (development, production, etc.).
 export const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+export const OMDB_API_KEY = import.meta.env.VITE_APIKEY;
+export const BASE_OMDB_URL = import.meta.env.VITE_BASE_OMDB_URL;
